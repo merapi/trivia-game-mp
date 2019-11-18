@@ -25,6 +25,9 @@ const GlobalStyle = createGlobalStyle`
     line-height: 1.3rem;
   }
 
+  h1, h2, h3 {
+    margin: 0;
+  }
 `
 
 export default GlobalStyle

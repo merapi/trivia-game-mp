@@ -1,13 +1,17 @@
+import Content from 'components/Content'
 import GlobalStyle from 'design/GlobalStyle'
+import { useRoutes } from 'hookrouter'
 import React from 'react'
-import Home from 'screens/Home'
-import './App.css'
+import routes from 'routes'
+import NotFound from 'screens/NotFound'
 
 const App: React.FC = () => {
+  const routeResult = useRoutes(routes)
+
   return (
     <>
       <GlobalStyle />
-      <Home />
+      <Content>{routeResult || <NotFound />}</Content>
     </>
   )
 }

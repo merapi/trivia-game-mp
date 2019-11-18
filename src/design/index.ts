@@ -22,11 +22,12 @@ export enum FontSize {
 }
 
 export enum Color {
-  Correct = '#A0DB35',
-  Wrong = '#FD2E36',
+  Correct = '#8bc322',
+  Wrong = '#e3020a',
   Primary = '#1688FA',
   Background = '#FAFAFA',
   AlmostBlack = '#222',
+  Winner = '#AB8D3F',
 }
 
 export enum FlexAlign {
