@@ -8,5 +8,7 @@ module.exports = {
         allowTypedFunctionExpressions: true,
       },
     ],
+    'import/prefer-default-export': 'off',
+    'no-underscore-dangle': 'off',
   },
 }

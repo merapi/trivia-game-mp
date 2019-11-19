@@ -9,6 +9,7 @@ interface Props {
   pulse?: boolean
   className?: string
   color?: Color
+  marginTop?: Spacing | Spacing[]
   backgroundColor?: Color
   onClick?: (event: MouseEvent<HTMLButtonElement>) => void
   children?: ReactNode
@@ -47,11 +48,9 @@ export default styled(BareButton)`
   cursor: pointer;
   display: inline-flex;
   align-items: center;
+  ${styledProperty('margin-top')}
   ${styledProperty('color', '#fff')}
-  ${styledProperty(
-    'background-color',
-    '#999',
-  )}
+  ${styledProperty('background-color', '#999')}
   box-shadow: 0 3px 2px 0 rgba(0, 0, 0, 0.1);
   border-radius: ${Size.RoundedCorner}px;
   padding: ${Spacing.Base}px ${Spacing.Large}px;
