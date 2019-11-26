@@ -1,5 +1,5 @@
-import { Color } from 'design';
-import { createGlobalStyle } from 'styled-components';
+import { Color } from 'design'
+import { createGlobalStyle } from 'styled-components'
 
 const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css?family=Public+Sans&display=swap');

@@ -1,7 +1,17 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Action } from 'redux'
 import { Buffer } from 'redux-saga'
-import { actionChannel as rawActionChannel, ActionPattern, call as rawCall, cancelled as rawCancelled, Effect, put as rawPut, race as rawRace, select as rawSelect, take as rawTake } from 'redux-saga/effects'
+import {
+  actionChannel as rawActionChannel,
+  ActionPattern,
+  call as rawCall,
+  cancelled as rawCancelled,
+  Effect,
+  put as rawPut,
+  race as rawRace,
+  select as rawSelect,
+  take as rawTake,
+} from 'redux-saga/effects'
 
 // tslint:disable: readonly-array
 

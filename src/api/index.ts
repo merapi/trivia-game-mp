@@ -1,5 +1,5 @@
-import { API_URL } from 'config/consts';
-import { Question, QuestionDifficulty, QuestionType } from 'types';
+import { API_URL } from 'config/consts'
+import { Question, QuestionDifficulty, QuestionType } from 'types'
 
 interface FetchOptions {
   signal?: AbortSignal
@@ -26,9 +26,9 @@ export interface GetTokenResponse {
 
 const questions = {
   async getToken(): Promise<GetTokenResponse> {
-    return fetch(
-      `${API_URL}/api_token.php?command=request`,
-    ).then(response => response.json())
+    return fetch(`${API_URL}/api_token.php?command=request`).then(response =>
+      response.json(),
+    )
   },
 
   async fetchQuestions(
@@ -44,9 +44,15 @@ const questions = {
     }
 
     const params: { [key: string]: any } = {
-      amount, difficulty, type, token, encode: 'url3986'
+      amount,
+      difficulty,
+      type,
+      token,
+      encode: 'url3986',
     }
-    const query = Object.keys(params).filter(key => params[key]).map(key => `${key}=${params[key]}`)
+    const query = Object.keys(params)
+      .filter(key => params[key])
+      .map(key => `${key}=${params[key]}`)
 
     return fetch(
       `${API_URL}/api.php?${query.join('&')}`,

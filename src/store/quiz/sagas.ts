@@ -1,4 +1,8 @@
-import Api, { FetchQuestionsResponse, GetTokenResponse, ResponseCode } from 'api'
+import Api, {
+  FetchQuestionsResponse,
+  GetTokenResponse,
+  ResponseCode,
+} from 'api'
 import { navigate } from 'hookrouter'
 import { getItem, setItem } from 'utils/storage'
 import { call, put, select, take } from 'utils/typedEffects'
@@ -44,7 +48,10 @@ function* fetchQuestions(gameSettings: NewGame) {
 export default function*() {
   while (true) {
     const gameSettings: NewGame = yield take(QuizActionsConsts.NEW_GAME)
-    const response: FetchQuestionsResponse = yield call(fetchQuestions, gameSettings)
+    const response: FetchQuestionsResponse = yield call(
+      fetchQuestions,
+      gameSettings,
+    )
 
     // Safely decode the questions without dangerouslySetInnerHTML
     yield put(

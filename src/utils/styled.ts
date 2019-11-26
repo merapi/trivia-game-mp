@@ -3,7 +3,7 @@ import { BREAKPOINTS } from 'config/consts'
 
 const breakpoints = BREAKPOINTS
 
-const parseValue = (value: string | number, property?: string) => {
+const parseValue = (value: string | number) => {
   if (typeof value === 'string') {
     return value
   }
@@ -11,25 +11,27 @@ const parseValue = (value: string | number, property?: string) => {
 }
 
 const parseProperty = (property: string, value: string | number) => {
-  const parsedValue = parseValue(value, property)
+  const parsedValue = parseValue(value)
   return `${property}: ${parsedValue};`
 }
 
-export const parseStyle = (property: string, value: any | any[], defaultValue: any | any[]) => {
+export const parseStyle = (
+  property: string,
+  value: any | any[],
+  defaultValue: any | any[],
+) => {
   if (Array.isArray(value)) {
     return value.reduce((acc, v, i) => {
       if (i === 0) return acc + parseProperty(property, v)
       const breakpoint = breakpoints[i - 1]
-      return (
-        `${acc
-        }
+      return `${acc}
 @media (min-width: ${breakpoint}px) {
   ${parseProperty(property, v)}
 }
         `
-      )
     }, '')
-  } if(value !== undefined) {
+  }
+  if (value !== undefined) {
     return parseProperty(property, value)
   }
   return parseProperty(property, defaultValue)
@@ -40,9 +42,10 @@ const camelCased = (str: string) =>
     return g[1].toUpperCase()
   })
 
-export const styledProperty = (property: string | string[], defaultValue?: any) => (
-  props: any,
-) => {
+export const styledProperty = (
+  property: string | string[],
+  defaultValue?: any,
+) => (props: any) => {
   let propertyKey: string
   let propertyName: string
 

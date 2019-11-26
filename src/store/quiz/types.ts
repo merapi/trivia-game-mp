@@ -10,7 +10,7 @@ export enum QuizActionsConsts {
 // Action types
 export interface NewGame {
   type: QuizActionsConsts.NEW_GAME
-  numberOfQuestions: number,
+  numberOfQuestions: number
   questionDifficulty: QuestionDifficulty
   questionType: QuestionType
 }
@@ -32,6 +32,6 @@ export type QuizActions = NewGame | SetQuestions | GiveAnswer
 
 // State type
 export interface QuizState {
-  readonly questions: Question[],
-  readonly answers: string[],
+  readonly questions: Question[]
+  readonly answers: string[]
 }

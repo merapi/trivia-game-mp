@@ -2,13 +2,10 @@ import { QuizActions, QuizActionsConsts, QuizState } from './types'
 
 const initialState: QuizState = {
   questions: [],
-  answers: []
+  answers: [],
 }
 
-export default (
-  state: QuizState = initialState,
-  action: QuizActions,
-) => {
+export default (state: QuizState = initialState, action: QuizActions) => {
   switch (action.type) {
     case QuizActionsConsts.NEW_GAME: {
       return initialState
@@ -17,20 +14,21 @@ export default (
     case QuizActionsConsts.SET_QUESTIONS: {
       const { questions } = action
 
-      return ({
+      return {
         ...state,
         questions,
-      })
+      }
     }
 
     case QuizActionsConsts.GIVE_ANSWER: {
       const { answer } = action
-      return ({
+      return {
         ...state,
-        answers: [...state.answers, answer]
-      })
+        answers: [...state.answers, answer],
+      }
     }
 
-    default: return state
+    default:
+      return state
   }
 }

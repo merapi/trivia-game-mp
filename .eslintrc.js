@@ -12,5 +12,7 @@ module.exports = {
     'no-underscore-dangle': 'off',
     camelcase: 'off',
     '@typescript-eslint/camelcase': 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
+    'no-console': 'off',
   },
 }
