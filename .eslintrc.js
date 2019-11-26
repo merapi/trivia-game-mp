@@ -10,5 +10,7 @@ module.exports = {
     ],
     'import/prefer-default-export': 'off',
     'no-underscore-dangle': 'off',
+    camelcase: 'off',
+    '@typescript-eslint/camelcase': 'off',
   },
 }

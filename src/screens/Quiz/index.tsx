@@ -1,10 +1,10 @@
+import BooleanQuestion from 'components/BooleanQuestion'
 import Button from 'components/Button'
 import Loader from 'components/Loader'
-import Question from 'components/Question'
 import Row from 'components/Row'
 import Title from 'components/Title'
-import { FlexAlign, FlexDirection, Spacing } from 'design'
-import React, { useEffect } from 'react'
+import { Align, FlexAlign, FlexDirection, FontSize, Spacing } from 'design'
+import React, { useCallback, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import * as quizActions from 'store/quiz/actions'
 import * as quizSelectors from 'store/quiz/selectors'
@@ -27,21 +27,31 @@ const BareQuiz = ({ className }: Props) => {
     )
   }, [dispatch])
 
+  const onAnswer = useCallback(
+    answer => {
+      dispatch(quizActions.giveAnswer(answer))
+    },
+    [dispatch],
+  )
+
   return (
     <Row
       direction={FlexDirection.Column}
       alignItems={FlexAlign.Center}
       className={className}
+      textAlign={Align.Center}
     >
       {currentQuestion ? (
         <>
-          <pre>{JSON.stringify(currentQuestion, null, 2)}</pre>
-          <Button href="/results">Results</Button>
-          <Question
-            category="Entertainment: Video Games"
-            question="Question..."
+          <BooleanQuestion
+            category={currentQuestion.category}
+            question={currentQuestion.question}
+            onAnswer={onAnswer}
           />
-          <Title>
+          <Title
+            marginTop={Spacing.Large}
+            fontSize={[FontSize.Base, FontSize.Bigger]}
+          >
             {answersCount} of {questionsCount}
           </Title>
         </>
@@ -57,4 +67,6 @@ const BareQuiz = ({ className }: Props) => {
   )
 }
 
-export default styled(BareQuiz)``
+export default styled(BareQuiz)`
+  max-width: 680px;
+`

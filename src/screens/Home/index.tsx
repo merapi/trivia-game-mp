@@ -1,7 +1,14 @@
 import Button from 'components/Button'
 import Row from 'components/Row'
 import Title from 'components/Title'
-import { Color, FlexAlign, FlexDirection, FontSize, Spacing } from 'design'
+import {
+  Align,
+  Color,
+  FlexAlign,
+  FlexDirection,
+  FontSize,
+  Spacing,
+} from 'design'
 import React from 'react'
 import styled from 'styled-components'
 
@@ -13,7 +20,9 @@ const BareHome = ({ className }: Props) => (
   <Row
     direction={FlexDirection.Column}
     alignItems={FlexAlign.Center}
+    justifyContent={FlexAlign.Center}
     className={className}
+    textAlign={Align.Center}
   >
     <Title fontSize={FontSize.Big} marginBottom={Spacing.Huge} as="h1">
       Welcome to the Trivia Challenge!

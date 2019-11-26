@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 export enum QuestionDifficulty { Easy = 'easy', Medium = 'medium', Hard = 'hard' }
 export enum QuestionType { Boolean = 'boolean' , Multiple = 'multiple' }
 

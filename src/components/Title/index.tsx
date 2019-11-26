@@ -1,4 +1,4 @@
-import { FlexAlign, FontSize, Spacing } from 'design'
+import { Align, FlexAlign, FontSize, Spacing } from 'design'
 import React, { ReactNode } from 'react'
 import styled from 'styled-components'
 import { styledProperty } from 'utils/styled'
@@ -8,9 +8,11 @@ interface Props {
   children: ReactNode
   color?: string
   fontSize?: FontSize | FontSize[]
+  marginTop?: Spacing
   marginBottom?: Spacing
   marginLeft?: Spacing
-  justifyContent?: FlexAlign | undefined
+  textAlign?: Align
+  justifyContent?: FlexAlign
 }
 
 const BareTitle = ({ className, children }: Props) => (
@@ -19,8 +21,11 @@ const BareTitle = ({ className, children }: Props) => (
 
 export default styled(BareTitle)<Props>`
   font-weight: bold;
+  line-height: 140%;
+  ${styledProperty('text-align')}
   ${styledProperty('font-size', FontSize.Bigger)}
   ${styledProperty('color')}
+  ${styledProperty('margin-top')}
   ${styledProperty('margin-left')}
   ${styledProperty('margin-bottom', Spacing.Base)}
 `

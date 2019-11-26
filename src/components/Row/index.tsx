@@ -1,4 +1,4 @@
-import { FlexAlign, FlexDirection, Spacing } from 'design'
+import { Align, FlexAlign, FlexDirection, Spacing } from 'design'
 import React, { forwardRef, ReactNode } from 'react'
 import styled from 'styled-components'
 import { styledProperty } from 'utils/styled'
@@ -13,6 +13,7 @@ interface Props {
   direction?: FlexDirection | undefined
   alignItems?: FlexAlign | undefined
   justifyContent?: FlexAlign | undefined
+  textAlign?: Align
 }
 
 const BareRow = ({ className, children }: Props, ref: any) => (
@@ -22,6 +23,7 @@ const BareRow = ({ className, children }: Props, ref: any) => (
 )
 
 export default styled(forwardRef(BareRow))`
+  ${styledProperty('text-align')}
   ${styledProperty('display', 'flex')}
   ${styledProperty('margin-bottom')}
   ${styledProperty('margin-top')}

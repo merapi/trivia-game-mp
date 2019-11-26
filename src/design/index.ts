@@ -30,6 +30,12 @@ export enum Color {
   Winner = '#AB8D3F',
 }
 
+export enum Align {
+  Left = 'left',
+  Center = 'center',
+  Right = 'right',
+}
+// TODO: We should merge them? PROS: easier to remember, just 'Align', CONS: flex-start is not valid for text
 export enum FlexAlign {
   Start = 'flex-start',
   Center = 'center',

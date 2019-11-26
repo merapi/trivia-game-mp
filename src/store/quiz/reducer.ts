@@ -14,6 +14,15 @@ export default (
       return initialState
     }
 
+    case QuizActionsConsts.SET_QUESTIONS: {
+      const { questions } = action
+
+      return ({
+        ...state,
+        questions,
+      })
+    }
+
     case QuizActionsConsts.GIVE_ANSWER: {
       const { answer } = action
       return ({

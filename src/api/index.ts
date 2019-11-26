@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 import { API_URL } from 'config/consts';
 import { Question, QuestionDifficulty, QuestionType } from 'types';
 
@@ -6,7 +5,7 @@ interface FetchOptions {
   signal?: AbortSignal
 }
 
-enum ResponseCode {
+export enum ResponseCode {
   Success,
   NoResults,
   InvalidParameter,
@@ -19,7 +18,19 @@ export interface FetchQuestionsResponse {
   results: Question[]
 }
 
+export interface GetTokenResponse {
+  response_code: ResponseCode
+  response_message: string
+  token: string
+}
+
 const questions = {
+  async getToken(): Promise<GetTokenResponse> {
+    return fetch(
+      `${API_URL}/api_token.php?command=request`,
+    ).then(response => response.json())
+  },
+
   async fetchQuestions(
     amount: number,
     difficulty: QuestionDifficulty = QuestionDifficulty.Hard,
@@ -33,12 +44,12 @@ const questions = {
     }
 
     const params: { [key: string]: any } = {
-      amount, difficulty, type, token
+      amount, difficulty, type, token, encode: 'url3986'
     }
     const query = Object.keys(params).filter(key => params[key]).map(key => `${key}=${params[key]}`)
 
     return fetch(
-      `${API_URL}?${query.join('&')}`,
+      `${API_URL}/api.php?${query.join('&')}`,
       options,
     ).then(response => response.json())
   },

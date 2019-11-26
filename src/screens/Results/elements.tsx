@@ -13,5 +13,5 @@ export const WrongIcon = Icon(Wrong)
 
 export const Questions = styled.div`
   padding: ${Spacing.Large}px;
-  max-width: 640px;
+  max-width: 680px;
 `
