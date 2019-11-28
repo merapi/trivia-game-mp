@@ -13,17 +13,29 @@ interface Props {
   marginLeft?: Spacing | Spacing[]
   backgroundColor?: Color
   onClick?: (event: MouseEvent<HTMLButtonElement>) => void
+  onMouseEnter?: (event: MouseEvent<HTMLButtonElement>) => void
   children?: ReactNode
 }
 
-const BareButton = ({ className, children, onClick, href }: Props) => {
+const BareButton = ({
+  className,
+  children,
+  onClick,
+  onMouseEnter,
+  href,
+}: Props) => {
   let onClickHandler = onClick
   if (href) {
     onClickHandler = () => navigate(href)
   }
 
   return (
-    <button type="button" className={className} onClick={onClickHandler}>
+    <button
+      type="button"
+      className={className}
+      onClick={onClickHandler}
+      onMouseEnter={onMouseEnter}
+    >
       {children}
     </button>
   )

@@ -1,8 +1,9 @@
 import React from 'react'
+import lazy from 'utils/lazyPreload'
 
-const Home = React.lazy(() => import('screens/Home'))
-const Quiz = React.lazy(() => import('screens/Quiz'))
-const Results = React.lazy(() => import('screens/Results'))
+const Home = lazy(() => import('screens/Home'))
+export const Quiz = lazy(() => import('screens/Quiz'))
+export const Results = lazy(() => import('screens/Results'))
 
 const routes = {
   '/': () => <Home />,

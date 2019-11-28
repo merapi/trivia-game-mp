@@ -5,6 +5,7 @@ import Api, {
 } from 'api'
 import { navigate } from 'hookrouter'
 import { fork } from 'redux-saga/effects'
+import { Results } from 'routes'
 import { getItem, setItem } from 'utils/storage'
 import { call, put, select, take } from 'utils/typedEffects'
 import * as quizActions from './actions'
@@ -70,12 +71,14 @@ function* gameFlow() {
       ),
     )
 
-    while (
-      (yield select(quizSelectors.answersCount)) <
-      gameSettings.numberOfQuestions
-    ) {
+    let answersCount = 0
+    do {
       yield take(QuizActionsConsts.GIVE_ANSWER)
-    }
+      answersCount = yield select(quizSelectors.answersCount)
+      if (answersCount + 1 === gameSettings.numberOfQuestions) {
+        Results.preload()
+      }
+    } while (answersCount < gameSettings.numberOfQuestions)
 
     yield call(navigate, '/results')
   }
