@@ -10,7 +10,8 @@ describe('Quiz screen', () => {
   test('Answer 10 questions, see the congrats, start again', async () => {
     const { getByText, getByTestId } = render(<App />)
 
-    getByText(/^start/i).click()
+    const start = await waitForElement(() => getByText(/^start/i))
+    start.click()
     getByTestId('loader')
 
     for (let i = 1; i <= 10; i++) {
@@ -19,7 +20,7 @@ describe('Quiz screen', () => {
       getByText(/^true$/i).click()
     }
 
-    getByText(/awesome/i)
+    await waitForElement(() => getByText(/awesome/i))
     getByText(/play again/i).click()
     getByText(/^start/i).click()
   })

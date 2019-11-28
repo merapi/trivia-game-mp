@@ -27,6 +27,7 @@
     "eject": "react-scripts eject",
     "test:e2e": "./node_modules/cypress/bin/cypress run",
     "test:e2e:watch": "./node_modules/cypress/bin/cypress open",
+    "test:all": "npm run test && npm run test:e2e",
     "code:clean": "yarn code:lint && yarn code:format",
     "code:lint": "eslint --ext .js,.jsx,.ts,.tsx \"src/\" --fix",
     "code:format": "prettier './src/**/**.{js,jsx,ts,tsx}' --write",

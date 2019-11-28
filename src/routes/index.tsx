@@ -1,7 +1,8 @@
 import React from 'react'
-import Home from 'screens/Home'
-import Quiz from 'screens/Quiz'
-import Results from 'screens/Results'
+
+const Home = React.lazy(() => import('screens/Home'))
+const Quiz = React.lazy(() => import('screens/Quiz'))
+const Results = React.lazy(() => import('screens/Results'))
 
 const routes = {
   '/': () => <Home />,
