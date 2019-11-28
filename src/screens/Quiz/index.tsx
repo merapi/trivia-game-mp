@@ -3,13 +3,17 @@ import Button from 'components/Button'
 import Loader from 'components/Loader'
 import Row from 'components/Row'
 import Title from 'components/Title'
+import {
+  NUMBER_OF_QUESTIONS,
+  QUESTIONS_DIFFICULTY,
+  QUESTIONS_TYPE,
+} from 'config/consts'
 import { Align, FlexAlign, FlexDirection, FontSize, Spacing } from 'design'
 import React, { useCallback, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import * as quizActions from 'store/quiz/actions'
 import * as quizSelectors from 'store/quiz/selectors'
 import styled from 'styled-components'
-import { QuestionDifficulty, QuestionType } from 'types'
 
 interface Props {
   className?: string
@@ -23,7 +27,11 @@ const BareQuiz = ({ className }: Props) => {
 
   useEffect(() => {
     dispatch(
-      quizActions.newGame(10, QuestionDifficulty.Hard, QuestionType.Boolean),
+      quizActions.newGame(
+        NUMBER_OF_QUESTIONS,
+        QUESTIONS_DIFFICULTY,
+        QUESTIONS_TYPE,
+      ),
     )
   }, [dispatch])
 
@@ -52,7 +60,7 @@ const BareQuiz = ({ className }: Props) => {
             marginTop={Spacing.Large}
             fontSize={[FontSize.Base, FontSize.Bigger]}
           >
-            {answersCount} of {questionsCount}
+            {answersCount + 1} of {questionsCount}
           </Title>
         </>
       ) : (

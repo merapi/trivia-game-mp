@@ -19,5 +19,6 @@
       "autoFix": true
     }
   ],
-  "tslint.enable": false
+  "tslint.enable": false,
+  "eslint.enable": true
 }

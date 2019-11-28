@@ -1,14 +1,11 @@
-import Api, {
-  FetchQuestionsResponse,
-  GetTokenResponse,
-  ResponseCode,
-} from 'api'
-import { navigate } from 'hookrouter'
-import { getItem, setItem } from 'utils/storage'
-import { call, put, select, take } from 'utils/typedEffects'
-import * as quizActions from './actions'
-import * as quizSelectors from './selectors'
-import { NewGame, QuizActionsConsts } from './types'
+import Api, { FetchQuestionsResponse, GetTokenResponse, ResponseCode } from 'api';
+import { navigate } from 'hookrouter';
+import { getItem, setItem } from 'utils/storage';
+import { call, put, select, take } from 'utils/typedEffects';
+
+import * as quizActions from './actions';
+import * as quizSelectors from './selectors';
+import { NewGame, QuizActionsConsts } from './types';
 
 function* newToken() {
   const tokenResponse: GetTokenResponse = yield call(Api.questions.getToken)
@@ -36,7 +33,6 @@ function* fetchQuestions(gameSettings: NewGame) {
       gameSettings.questionType,
       token,
     )
-
     if (response.response_code === ResponseCode.TokenEmpty) {
       token = yield call(newToken)
     } else {

@@ -1,11 +1,5 @@
 import { Color, Spacing } from 'design'
-import React, {
-  RefObject,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from 'react'
+import React from 'react'
 import styled from 'styled-components'
 
 interface Props {
@@ -15,34 +9,9 @@ interface Props {
 
 const BareLoader = ({ className, withOuter }: Props) => {
   const jsx = []
-  const [smallIsVisible, setSmallIsVisible] = useState(false)
-  const ref = useRef<HTMLDivElement>(null)
 
-  const loaderOvserved = useCallback(
-    (entries: IntersectionObserverEntry[]) => {
-      if (entries.length && entries[0].target === ref.current) {
-        setSmallIsVisible(!entries[0].isIntersecting)
-      }
-    },
-    [setSmallIsVisible],
-  )
-
-  useEffect(() => {
-    const target = ref.current
-    const observer = new IntersectionObserver(loaderOvserved)
-    if (target) {
-      observer.observe(target)
-    }
-
-    return () => {
-      if (target) {
-        observer.unobserve(target)
-      }
-    }
-  }, [loaderOvserved])
-
-  const loader = (key: string, loaderRef?: RefObject<HTMLDivElement>) => (
-    <div key={key} ref={loaderRef} className={className}>
+  const loader = (key: string) => (
+    <div data-testid="loader" key={key} className={className}>
       <div className="sk-fading-circle">
         <div className="sk-circle1 sk-circle" />
         <div className="sk-circle2 sk-circle" />
@@ -61,28 +30,13 @@ const BareLoader = ({ className, withOuter }: Props) => {
   )
 
   if (withOuter) {
-    jsx.push(<Outer key="outer">{loader('mainLoader', ref)}</Outer>)
+    jsx.push(<Outer key="outer">{loader('mainLoader')}</Outer>)
   } else {
-    jsx.push(loader('mainLoader', ref))
-  }
-
-  if (smallIsVisible) {
-    jsx.push(
-      <Absolute key="absoluteLoader">
-        <Outer padding={Spacing.Small}>{loader('absoluteLoader')}</Outer>
-      </Absolute>,
-    )
+    jsx.push(loader('mainLoader'))
   }
 
   return <>{jsx}</>
 }
-
-const Absolute = styled.div`
-  position: fixed;
-  z-index: 2;
-  top: 10px;
-  left: 10px;
-`
 
 const Outer = styled.div<{ padding?: Spacing }>`
   padding: ${({ padding = Spacing.Medium }) => padding}px;
