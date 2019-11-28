@@ -1,5 +1,5 @@
 import Api, { ResponseCode } from 'api';
-import { mockQuestion } from './question.fixture';
+import { mockQuestion } from 'tests/fixtures/question.fixture';
 
 jest.spyOn(Api.questions, 'getToken').mockImplementation(() =>
   Promise.resolve({

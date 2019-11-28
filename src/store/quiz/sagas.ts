@@ -1,11 +1,12 @@
 import Api, { FetchQuestionsResponse, GetTokenResponse, ResponseCode } from 'api';
 import { navigate } from 'hookrouter';
+import { fork } from 'redux-saga/effects';
 import { getItem, setItem } from 'utils/storage';
 import { call, put, select, take } from 'utils/typedEffects';
-
 import * as quizActions from './actions';
 import * as quizSelectors from './selectors';
 import { NewGame, QuizActionsConsts } from './types';
+
 
 function* newToken() {
   const tokenResponse: GetTokenResponse = yield call(Api.questions.getToken)
@@ -14,7 +15,7 @@ function* newToken() {
   return token
 }
 
-function* getToken() {
+export function* getToken() {
   let token = yield call(getItem, 'token')
   if (!token) {
     token = yield call(newToken)
@@ -41,7 +42,7 @@ function* fetchQuestions(gameSettings: NewGame) {
   } while (true)
 }
 
-export default function*() {
+function* gameFlow() {
   while (true) {
     const gameSettings: NewGame = yield take(QuizActionsConsts.NEW_GAME)
     const response: FetchQuestionsResponse = yield call(
@@ -75,4 +76,8 @@ export default function*() {
 
     yield call(navigate, '/results')
   }
+}
+
+export default function*() {
+  yield fork(gameFlow)
 }

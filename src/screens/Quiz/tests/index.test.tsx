@@ -4,7 +4,7 @@ import React from 'react'
 import { cleanup, render } from 'tests/utils'
 import './mocks'
 
-describe('Quiz', () => {
+describe('Quiz screen', () => {
   afterEach(cleanup)
 
   test('Answer 10 questions, see the congrats, start again', async () => {

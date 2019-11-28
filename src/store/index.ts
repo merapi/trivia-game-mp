@@ -10,7 +10,7 @@ const middleware = []
 const sagaMiddleware = createSagaMiddleware()
 middleware.push(sagaMiddleware)
 
-if (process.env.NODE_ENV === 'development') {
+if (process.env.NODE_ENV !== 'production') {
   // eslint-disable-next-line
   const { createLogger } = require(`redux-logger`);
   middleware.push(createLogger());
