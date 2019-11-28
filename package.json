@@ -22,7 +22,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --verbose",
+    "test": "cross-env CI=true react-scripts test",
+    "test:watch": "react-scripts test --verbose",
     "eject": "react-scripts eject",
     "test:e2e": "./node_modules/cypress/bin/cypress run",
     "test:e2e:watch": "./node_modules/cypress/bin/cypress open",
@@ -30,6 +31,17 @@
     "code:lint": "eslint --ext .js,.jsx,.ts,.tsx \"src/\" --fix",
     "code:format": "prettier './src/**/**.{js,jsx,ts,tsx}' --write",
     "code:check:rules": "eslint --print-config .eslintrc.js | eslint-config-prettier-check"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "tsc --noEmit && lint-staged && npm test"
+    }
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx}": [
+      "code:clean",
+      "git add"
+    ]
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -59,8 +71,11 @@
     "@types/redux-saga": "^0.10.5",
     "@types/styled-components": "^4.4.0",
     "@types/testing-library__cypress": "^5.0.1",
+    "cross-env": "^6.0.3",
     "cypress": "^3.6.1",
     "eslint-plugin-cypress": "^2.7.0",
+    "husky": "^3.1.0",
+    "lint-staged": "^9.5.0",
     "poetic": "^1.1.0",
     "ts-jest": "^24.2.0",
     "whatwg-fetch": "^3.0.0"
