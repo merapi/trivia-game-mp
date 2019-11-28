@@ -1,5 +1,5 @@
-import Api, { ResponseCode } from 'api';
-import { mockQuestion } from 'tests/fixtures/question.fixture';
+import Api, { ResponseCode } from 'api'
+import { mockQuestion } from 'tests/fixtures/question.fixture'
 
 jest.spyOn(Api.questions, 'getToken').mockImplementation(() =>
   Promise.resolve({
@@ -8,14 +8,12 @@ jest.spyOn(Api.questions, 'getToken').mockImplementation(() =>
     response_message: '',
   }),
 )
-jest
-  .spyOn(Api.questions, 'fetchQuestions')
-  .mockImplementation(() =>
-    Promise.resolve({
-      results: Array(10).fill(mockQuestion),
-      response_code: 0,
-    }),
-  )
+jest.spyOn(Api.questions, 'fetchQuestions').mockImplementation(() =>
+  Promise.resolve({
+    results: Array(10).fill(mockQuestion),
+    response_code: 0,
+  }),
+)
 
 jest.mock('utils/storage', () => {
   return {

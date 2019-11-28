@@ -1,4 +1,4 @@
-import { Question, QuestionDifficulty, QuestionType } from 'types';
+import { Question, QuestionDifficulty, QuestionType } from 'types'
 
 export const mockQuestion: Question = {
   question: 'Test question, correct answer is True',

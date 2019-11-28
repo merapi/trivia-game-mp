@@ -1,19 +1,17 @@
-import { applyMiddleware, compose, createStore } from 'redux';
-import createSagaMiddleware from 'redux-saga';
-import rootReducer from './rootReducer';
-import rootSaga from './rootSaga';
-
-
+import { applyMiddleware, compose, createStore } from 'redux'
+import createSagaMiddleware from 'redux-saga'
+import rootReducer from './rootReducer'
+import rootSaga from './rootSaga'
 
 const middleware = []
 
 const sagaMiddleware = createSagaMiddleware()
 middleware.push(sagaMiddleware)
 
-if (process.env.NODE_ENV !== 'production') {
+if (process.env.NODE_ENV === 'development') {
   // eslint-disable-next-line
-  const { createLogger } = require(`redux-logger`);
-  middleware.push(createLogger());
+  const { createLogger } = require(`redux-logger`)
+  middleware.push(createLogger())
   // middleware.push(createLogger({ colors: process.env.NODE_ENV !== 'test' }));
 }
 
