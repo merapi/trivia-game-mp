@@ -1,8 +1,4 @@
-import Api, {
-  FetchQuestionsResponse,
-  GetTokenResponse,
-  ResponseCode,
-} from 'api'
+import Api, { FetchQuestionsResponse, GetTokenResponse, ResponseCode } from 'api'
 import { navigate } from 'hookrouter'
 import { fork } from 'redux-saga/effects'
 import { Results } from 'routes'
@@ -38,7 +34,7 @@ function* fetchQuestions(gameSettings: NewGame) {
       gameSettings.questionType,
       token,
     )
-    if (response.response_code === ResponseCode.TokenEmpty) {
+    if ([ResponseCode.TokenEmpty, ResponseCode.TokenNotFound].includes(response.response_code)) {
       token = yield call(newToken)
     } else {
       return response
